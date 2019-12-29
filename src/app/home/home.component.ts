@@ -7,18 +7,19 @@ import { DataService } from '../data.service' ;
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'] ,
-  providers: [ DataService ]
+  providers: [ DataService,LoginComponent ]
 })
 export class HomeComponent implements OnInit {
 
   user$: Object;
-  @Input() userId ;
+  @Input() userId: any ;
 
   constructor(private data: DataService, private router: Router,private login: LoginComponent) { }
 
   ngOnInit() {
-    this.userId = this.login.returnId() ,
-    this.data.getUsers(this.userId+'/').subscribe(
+    this.userId = this.login.id ,
+    // console.log(this.userId) ,
+    this.data.getUsers(1).subscribe(
       data => this.user$ = data
     );
   }

@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   pwd='';
   users$: Object;
   success: boolean;
+  @Output() userFound = new EventEmitter() ;
   id: number;
-  @Output() userId = new EventEmitter<number>() ;
   
   constructor(private data: DataService, private router: Router) { }
 
@@ -37,6 +37,7 @@ export class LoginComponent implements OnInit {
       if(this.user == this.users$[i].username && this.pwd == this.users$[i].username ){
         this.success = true ;
         this.id = this.users$[i].id ;
+        this.userFound.emit(this.id) ;
     }
     
     }
@@ -56,11 +57,6 @@ export class LoginComponent implements OnInit {
     }
       
   }
-  returnId() {
-
-    return this.userId.emit(this.id) ;
-
-  }
-  
+    
 
 }

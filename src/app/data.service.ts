@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http'
 export class DataService {
 
   constructor(private http: HttpClient) { } 
-  getUsers(navigation: string) {
+  getUsers(navigation: any) {
     return this.http.get('https://jsonplaceholder.typicode.com/users/'+navigation)
   }
 }
